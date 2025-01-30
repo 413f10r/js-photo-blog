@@ -22,3 +22,17 @@ h1 {
     font-optical-sizing: auto;
     font-size: 5rem;
 }
+
+.edu-tas-beginner {
+    font-family: "Edu TAS Beginner", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+}
+
+.sometype-mono {
+    font-family: "Sometype Mono", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+}
