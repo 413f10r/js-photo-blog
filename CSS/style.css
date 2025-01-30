@@ -1,20 +1,24 @@
- body {
-     background-image: url(../img/cork.png);
-     background-size: contain;
- }
+@import url("https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400..700&family=Sometype+Mono:ital,wght@0,400..700;1,400..700&display=swap ");
 
- header {
-     background-image: url(../img/wall.png);
-     background-size: contain;
-     text-align: center;
-     height: 20vh;
- }
+body {
+    background-image: url(../img/cork.png);
+    background-size: contain;
+}
 
- main {
+header {
+    background-image: url(../img/wall.png);
+    background-size: contain;
+    text-align: center;
+    height: 20vh;
+}
 
-     height: 80vh;
- }
+main {
 
- h1 {
-     font-size: 5rem;
- }
+    height: 80vh;
+}
+
+h1 {
+    font-family: 'Edu TAS ';
+    font-optical-sizing: auto;
+    font-size: 5rem;
+}
