@@ -1,0 +1,20 @@
+ body {
+     background-image: url(../img/cork.png);
+     background-size: contain;
+ }
+
+ header {
+     background-image: url(../img/wall.png);
+     background-size: contain;
+     text-align: center;
+     height: 20vh;
+ }
+
+ main {
+
+     height: 80vh;
+ }
+
+ h1 {
+     font-size: 5rem;
+ }
