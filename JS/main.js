@@ -1,39 +1,66 @@
-const endpoint = 'https://lanciweb.github.io/demo/api/pictures/';
-const methodFetch = { method: 'GET' }
-const card = document.querySelector(" .row");
+//const overlay = document.querySelector('');
+//const overlayImg = document.querySelector('');
+//const overlayButton = document - querySelector('');
+let card = document.getElementById("cardContainer");
 
 
 
-fetch(endpoint, methodFetch)
-    .then(res => res.json())
+
+fetch("https://lanciweb.github.io/demo/api/pictures/")
+    .then(response => response.json())
     .then(data => {
-        console.log(data)
 
-        card.forEach(element => {
+        let cards = [];
 
-
-            const { date, id, title, url } = element
-
-            row.innerHTML +=
+        data.forEach(element => {
+            card.innerHTML +=
                 `
-                < div class="card m-3" style = "width: 100%;" >
+            <div class="col-md-6 col-lg-4 ">
+                <section class="card m-4 rotation" data-id="${element.id}">
                     <figure class="position-relative">
-                        <img class="position-absolute top-0 start-50 translate-middle" src="./img/pin.svg" alt="pin">
+                        <img class="img-fluid p-3" src="${element.url}" alt="${element.title}">
                     </figure>
-                    <a href="">
-                        <img src='${url} ' class="card-img-top p-3"
-                            alt='${title} '>
+                    <a class="roation" href="#">
+                        <img class="position-absolute top-0 start-50 translate-middle" src="./img/pin.svg" alt="pin">
                     </a>
                     <div class="card-body">
-                        <h5 class=" sometype-mono card-title text-uppercase">'${date} '</h5>
-                        <p class="card-text">'${title}' </p>
+                        <p class="sometype-mono-regular fs-4 text-danger">${element.date} </p>
+                        <h3 class="edu-tas-beginner-paragraph">${element.title} </h3>
                     </div>
-                </ div>
-
-                `
+                </section>
+            </div>
+               
+            `
+            cards = document.querySelectorAll(".card");
         });
+    })
+
+//let's link from html
+
+
+cards.forEach(element => {
+    element.addEventListener("click", function () {
+        let modal = document.getElementById("modalHtml");
+        modal.innerHTML =
+            `
+                 <div>
+                    <button id="btnClose" class="btn btn-danger mx-auto d-block">Chiudi Pagina</button>
+                 </div>
+                <figure>
+                    <img width="600px" class="img-fluid p-3" src="https://marcolanci.it/boolean/assets/pictures/${element.getAttribute("data-id")}.png" alt="${element.title}">
+                </figure>
+                `
+        modal.classList.remove("d-none");
+        modal.classList.add("transparent");
+
+        let btnClose = document.getElementById("btnClose");
+        btnClose.addEventListener("click", function () {
+            modal.classList.add("d-none");
+        })
 
     })
-    .catch(error => {
-        console.error(error)
-    });
+        .catch(error => {
+
+            console.error(error);
+        });
+})
