@@ -2,7 +2,7 @@
 //const overlayImg = document.querySelector('');
 //const overlayButton = document - querySelector('');
 let card = document.getElementById("cardContainer");
-
+let cards = [];
 
 
 
@@ -10,7 +10,7 @@ fetch("https://lanciweb.github.io/demo/api/pictures/")
     .then(response => response.json())
     .then(data => {
 
-        let cards = [];
+
 
         data.forEach(element => {
             card.innerHTML +=
@@ -31,36 +31,40 @@ fetch("https://lanciweb.github.io/demo/api/pictures/")
             </div>
                
             `
-            cards = document.querySelectorAll(".card");
+
+        });
+
+
+        //link from html
+        cards = document.querySelectorAll(".card");
+
+        cards.forEach(element => {
+            element.addEventListener("click", function () {
+                let modal = document.getElementById("modal");
+                modal.innerHTML =
+                    `
+                            
+                                <button id="btnClose" class="btn btn-primary mx-auto d-block">CLOSE</button>
+                            
+
+                                <img width="600px" class="img-fluid p-3" src="https://marcolanci.it/boolean/assets/pictures/${element.getAttribute("data-id")}.png" alt="${element.title}">
+                            
+                            `
+                modal.classList.add("transparent");
+                modal.classList.remove("d-none");
+
+                let btnClose = document.getElementById("btnClose");
+                btnClose.addEventListener("click", function () {
+                    modal.classList.add("d-none");
+                    modal.classList.remove("transparent");
+
+                })
+
+            })
         });
     })
+    .catch(error => {
+        console.error(error);
+    });
 
-//let's link from html
 
-
-cards.forEach(element => {
-    element.addEventListener("click", function () {
-        let modal = document.getElementById("modalHtml");
-        modal.innerHTML =
-            `
-                 <div>
-                    <button id="btnClose" class="btn btn-danger mx-auto d-block">Chiudi Pagina</button>
-                 </div>
-                <figure>
-                    <img width="600px" class="img-fluid p-3" src="https://marcolanci.it/boolean/assets/pictures/${element.getAttribute("data-id")}.png" alt="${element.title}">
-                </figure>
-                `
-        modal.classList.remove("d-none");
-        modal.classList.add("transparent");
-
-        let btnClose = document.getElementById("btnClose");
-        btnClose.addEventListener("click", function () {
-            modal.classList.add("d-none");
-        })
-
-    })
-        .catch(error => {
-
-            console.error(error);
-        });
-})
